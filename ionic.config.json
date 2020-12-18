@@ -1,5 +1,7 @@
 {
   "name": "alzy",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

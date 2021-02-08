@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">IMAGES LIST</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <br>
+  <ion-button expand='full' color='primary'>
+   <a href="http://localhost:8100/upload" style="color: #ffffff; text-decoration: none;"> Add An Image</a>
+  </ion-button>
+  <br>
+  <ion-list>
+    <ion-item *ngFor="let item of images">
+      <ion-card>
+
+        <img src="{{item.image}}"/>
+    
+        <ion-card-content>
+          <ion-card-title>
+           {{item.name}}
+          </ion-card-title>
+          
+        </ion-card-content>
+    
+        <ion-item>
+          <ion-icon name='create' item-start style="color: #55acee "></ion-icon>
+          Edit Entry
+         
+        </ion-item>
+    
+        <ion-item>
+          <ion-icon name='trash' item-start style="color: #d03e84 ">Delete Entry</ion-icon>
+          Delete Entry
+        </ion-item>
+    
+      </ion-card>
+     <br>
+     <br>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>reminder</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!submitted">
+    <form>
+      <ion-item lines="full">
+        <ion-label position="floating">Title</ion-label>
+        <ion-input type="text" [(ngModel)]='reminder.title' name='title' required></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Details</ion-label>
+        <ion-textarea  [(ngModel)]='reminder.details' name='details' required></ion-textarea>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">Deadline</ion-label>
+        <ion-input type="text"   [(ngModel)]='reminder.deadline' name='deadline' required></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="success" expand="block" (click)='saveReminder()'>Create Reminder</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+
+  <div *ngIf="submitted">
+    <h4>Reminder added!</h4>
+    <button class="btn btn-info">View Reminders</button>
+  </div>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">UPLOAD IMAGES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-item>
+    Name: <input type="text" expand='full' (change)='onNameChanged($event)'>
+  </ion-item>
+  <br>
+  <ion-item>
+    Image: <input type="file" (change)='onImageChanged($event)'>
+  </ion-item>
+  <br>
+  <ion-button color='primary' expand='full' (click)='newImage()'>Submit</ion-button>
+<!-- dummy frontend, looks like shit but to test if the api works, will style it later if it works..works so lets style it up -->
+<!-- <h3>Upload Image</h3>
+<label for="">Name:
+  <input type="text" (change)='onNameChanged($event)'>
+</label>
+<br>
+<label for="">Image:
+  <input type="file" (change)='onImageChanged($event)'>
+</label>
+<br>
+<button (click)='newImage()'>Submit</button> -->
+</ion-content>

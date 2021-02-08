@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -26,7 +27,19 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'reminder',
+    loadChildren: () => import('./pages/reminder/reminder.module').then( m => m.ReminderPageModule)
+  },   {
+    path: 'upload',
+    loadChildren: () => import('./pages/upload/upload.module').then( m => m.UploadPageModule)
+  },
+  {
+    path: 'uploadlist',
+    loadChildren: () => import('./pages/uploadlist/uploadlist.module').then( m => m.UploadlistPageModule)
   }
+//,canActivate: [AuthGuardService]
 ];
 
 @NgModule({

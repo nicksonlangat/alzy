@@ -1,50 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user.model';
-import {AuthService} from 'src/app/services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-signup',
+  selector: 'app-register',
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
+  userRegister: FormGroup;
+  loading: boolean;
 
-  user: User = {
-    username : '',
-    first_name:'',
-    last_name:'',
-    password:'',
-  } ;
-  submitted=false;
-
-  constructor( private authService:AuthService) { }
+  constructor(private fb: FormBuilder, private router: Router,
+    private userService: UserService) {
+    this.userRegister = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
   ngOnInit() {
+    this.loading = false;
   }
-  registerUser():void{
-    const data = {
-      username : this.user.username, 
-      first_name: this.user.first_name,
-      last_name:this.user.last_name,
-      password:this.user.password,
-    };
-    this.authService.create(data).subscribe(res=>{
-      console.log(res);
-      this.submitted = true;
-    },
-    err=>{
-      console.log(err);
-    }
+
+  onRegister() {
+    this.loading = true;
+    this.userService.registerUser(this.userRegister.value).subscribe(
+      response => {
+        this.loading = false;
+        this.router.navigate(['/login']);
+      },
+      error => {
+        this.loading = false;
+        console.log('error', error);
+      }
     );
-  }
-  
-  newUser(): void {
-    this.submitted = false;
-    this.user = {
-      username: '',
-      first_name:'',
-      last_name:'',
-      password:'',
-    };
   }
 }

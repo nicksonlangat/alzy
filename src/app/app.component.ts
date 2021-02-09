@@ -18,19 +18,19 @@ export class AppComponent implements OnInit {
       icon: 'chatbubbles'
     },
     {
-      title: 'CareTaker Module',
+      title: 'Profile',
       url: '/taker',
-      icon: 'contract'
+      icon: 'person'
     },
     {
-      title: 'Sign up',
-      url: '/signup',
-      icon: 'person-add'
+      title: 'Upload Image',
+      url: '/upload',
+      icon: 'cloud-upload'
     },
     {
-      title: 'Login',
-      url: '/login',
-      icon: 'log-in'
+      title: 'My Images',
+      url: '/uploadlist',
+      icon: 'image'
     },
     // {
     //   title: 'Trash',

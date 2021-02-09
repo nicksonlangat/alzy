@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/services/api.service';
-import {throwError} from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/models/user.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GlobalService } from 'src/app/services/global.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,36 +11,38 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  user: User = {
-    username : '',
-    first_name:'',
-    last_name:'',
-    password:'',
-  } ;
-  submitted=false;
+  userLogin: FormGroup;
+  loading: boolean;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router,
+     private userService: UserService, private global: GlobalService) {
+    this.userLogin = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
-    
+    this.loading = false;
+    if ( localStorage.getItem('token') && localStorage.getItem('account')) {
+      this.global.me = JSON.parse(localStorage.getItem('account'));
+      this.router.navigate(['/taker']);
+    }
   }
- loginUser(){
-  const data = {
-    username : this.user.username, 
-    first_name: this.user.first_name,
-    last_name:this.user.last_name,
-    password:this.user.password,
-  };
-   this.authService.logUser(data).subscribe(response=>{
-     console.log('response', response)
-     alert('User logged in successfully.')
-     this.router.navigateByUrl('/reminder');
-   },error=>{
-     console.log(error)
-   }
-   );
- }
-  
- 
-}
+  onLogin() {
+    this.loading = true;
+    this.userService.loginUser(this.userLogin.value).subscribe(
+      response => {
+        this.loading = false;
+        localStorage.setItem('token', response['token']);
+        this.global.me = response['user'];
+        this.router.navigate(['/taker']);
+      },
+      error => {
+        this.loading = false;
+        console.log('error', error);
+      }
+    );
+  }
 
+}

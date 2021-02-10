@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: 'uploadlist',
     loadChildren: () => import('./pages/uploadlist/uploadlist.module').then( m => m.UploadlistPageModule)
+  },
+  {
+    path: 'showreminders',
+    loadChildren: () => import('./pages/showreminders/showreminders.module').then( m => m.ShowremindersPageModule)
   }
 //,canActivate: [AuthGuardService]
 ];

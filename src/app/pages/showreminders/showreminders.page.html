@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center; text-transform: capitalize;">REMINDERS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    
+      <h6 style="text-align: center;">REMINDERS LIST</h6>
+    
+
+    <ion-item *ngFor='let x of reminders '>
+      <!-- <ion-avatar slot="start">
+        <img src="./avatar-finn.png">
+      </ion-avatar> -->
+      <ion-label>
+        <h2>Reminder # {{x.id}}</h2>
+        <h2>Reminder title: {{x.title}}</h2>
+        <h3>Reminder Deadline: {{x.deadline}}</h3>
+        <p>Reminder Details:  {{x.details}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

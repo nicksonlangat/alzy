@@ -7,6 +7,7 @@ const api_url ='http://localhost:8000/reminders'
 
 const upload_url='http://localhost:8000/upload'
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +25,10 @@ export class ApiService {
 
   public getImages(){
     return this.http.get(upload_url);
+  }
+
+  public getReminders(){
+    return this.http.get(api_url);
   }
 
 }

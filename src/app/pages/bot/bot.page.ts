@@ -29,8 +29,11 @@ export class BotPage implements OnInit {
   constructor(private theInAppBrowser: InAppBrowser,public navCtrl: NavController,private route: Router) {
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
+  // ngOnInit(): void {
+  //   throw new Error('Method not implemented.');
+  // }
   public openWithSystemBrowser(url : string){
     let target = "_system";
     this.theInAppBrowser.create(url,target,this.options);

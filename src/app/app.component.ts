@@ -32,16 +32,16 @@ export class AppComponent implements OnInit {
       url: '/uploadlist',
       icon: 'image'
     },
-    // {
-    //   title: 'Trash',
-    //   url: '/folder/Trash',
-    //   icon: 'trash'
-    // },
-    // {
-    //   title: 'Spam',
-    //   url: '/folder/Spam',
-    //   icon: 'warning'
-    // }
+    {
+      title: 'Create Reminder',
+      url: '/reminder',
+      icon: 'bookmark'
+    },
+    {
+      title: 'List Reminders',
+      url: '/showreminders',
+      icon: 'clipboard'
+    }
   ];
   public labels = [];
 
